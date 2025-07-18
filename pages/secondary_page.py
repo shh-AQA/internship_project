@@ -11,14 +11,17 @@ class SecondaryPage(BasePage):
     secondary_page_partial_url = 'secondary-listings'
 
     def select_secondary_option(self):
-        self.click(*self.SECONDARY_BTN)
+        self.wait_for_element_click(*self.SECONDARY_BTN)
+
 
     def verify_secondary_page_opened(self):
         self.verify_partial_url(self.secondary_page_partial_url)
 
+
     def select_filters_button(self):
         sleep(5)
         self.click(*self.FILTERS_BTN)
+
 
     def get_displayed_unit_prices(self):
         price_elements = self.find_elements(*self.UNIT_PRICE_LABELS)
@@ -35,6 +38,7 @@ class SecondaryPage(BasePage):
 
         print(f"Visible price elements processed: {len(prices)}")
         return prices or []
+
 
     def verify_prices_in_range(self, min_price, max_price):
         prices = self.get_displayed_unit_prices()

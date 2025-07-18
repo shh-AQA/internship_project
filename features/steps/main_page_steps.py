@@ -5,6 +5,8 @@ from behave import given, when, then
 def open_main_page(context):
     context.app.main_page.open_main_page()
 
+
 @given('the user logs into the page')
 def user_login(context):
     context.app.main_page.login(context.email, context.password)
+
