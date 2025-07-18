@@ -2,3 +2,4 @@ allure-behave
 behave
 selenium
 webdriver-manager
+python-dotenv

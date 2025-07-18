@@ -93,4 +93,4 @@ app_binaries/
 /features/test_results/*
 
 # Screenshots
-*.png
+#*.png
