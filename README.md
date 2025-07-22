@@ -17,12 +17,16 @@ To configure login credentials and settings:
     BASE_URL=https://soft.reelly.io
     REELLY_EMAIL=your_email@example.com
     REELLY_PASSWORD=your_password
-    HEADLESS=false
-    BROWSER=chrome
+    HEADLESS=false or true
+    BROWSER=chrome firefox
+    RUN_ON=local or browserstack
+    BROWSERSTACK_USERNAME=your_browserstack_username
+    BROWSERSTACK_ACCESS_KEY=your_browserstack_access_key
 
 
-## 🌐Cross-Browser Testing
-This project supports both Chrome and Firefox via Selenium and WebDriverManager.
+## 🌐Cross-Browser & Cloud Testing
+This project supports both Chrome and Firefox via Selenium 
+and WebDriverManager and remote cloud testing with BrowserStack. 
 
 Built-in environment hooks will:
 
