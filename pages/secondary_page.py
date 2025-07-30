@@ -1,17 +1,28 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
-from selenium.webdriver.support import expected_conditions as EC
+from utilities.helpers import is_mobile_mode
 from time import sleep
 
 
 class SecondaryPage(BasePage):
+    ##DESKTOP LOCATORS
     SECONDARY_BTN = (By.XPATH, "//div[text()='Secondary']")
     FILTERS_BTN = (By.CSS_SELECTOR, '.filter-text')
     UNIT_PRICE_LABELS = (By.CSS_SELECTOR, '.number-price-text')
     secondary_page_partial_url = 'secondary-listings'
 
+    ##MOBILE LOCATORS
+    OFF_PLAN_BTN = (By.CSS_SELECTOR, "a[wized='newOffPlanLink'][href='https://find.reelly.io/']")
+    MOBILE_SECONDARY_BTN = (By.XPATH, "//button[text()='Secondary']")
+    MOBILE_FILTERS_BTN = (By.CSS_SELECTOR, "[wized='openFiltersWindow']")
+
+
     def select_secondary_option(self):
-        self.wait_for_element_click(*self.SECONDARY_BTN)
+        if is_mobile_mode(self.driver):
+            self.wait_for_element_click(*self.OFF_PLAN_BTN)
+            self.wait_for_element_click(*self.MOBILE_SECONDARY_BTN)
+        else:
+            self.wait_for_element_click(*self.SECONDARY_BTN)
 
 
     def verify_secondary_page_opened(self):
@@ -20,7 +31,10 @@ class SecondaryPage(BasePage):
 
     def select_filters_button(self):
         sleep(5)
-        self.click(*self.FILTERS_BTN)
+        if is_mobile_mode(self.driver):
+            self.wait_for_element_click(*self.MOBILE_FILTERS_BTN)
+        else:
+            self.click(*self.FILTERS_BTN)
 
 
     def get_displayed_unit_prices(self):
