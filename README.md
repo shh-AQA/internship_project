@@ -3,63 +3,91 @@ Automated UI testing for https://www.careerist.com/automation
 
 Built with **Python 3** and **Behave (BDD)** using **Selenium WebDriver**.
 
-## 🔐 Credentials & Environment Variables
-To configure login credentials and settings:
 
-1. Copy the example file:
+---
 
-        cp .env.example .env
+##  What This Framework Does
 
+- Runs UI tests using the Page Object Model (POM)
+- Supports mobile emulation (yep, test like you're on a phone!)
+- Works locally or with BrowserStack for cloud-based testing
+- Uses Gherkin-style test cases for readable, behavior-driven testing
+- Captures screenshots automatically on failures
+- Auto-cleans sessions and browser state between tests
 
-2. Fill in your values:
+---
 
+## Setup: Environment Variables
 
-    BASE_URL=https://soft.reelly.io
-    REELLY_EMAIL=your_email@example.com
-    REELLY_PASSWORD=your_password
-    HEADLESS=false or true
-    BROWSER=chrome firefox
-    RUN_ON=local or browserstack
-    BROWSERSTACK_USERNAME=your_browserstack_username
-    BROWSERSTACK_ACCESS_KEY=your_browserstack_access_key
+To get started, copy and configure your `.env`:
 
+```bash
+cp .env.example .env
 
-## 🌐Cross-Browser & Cloud Testing
-This project supports both Chrome and Firefox via Selenium 
-and WebDriverManager and remote cloud testing with BrowserStack. 
+BASE_URL=https://soft.reelly.io
+REELLY_EMAIL=your_email@example.com
+REELLY_PASSWORD=your_password
+HEADLESS=false  # or true
+BROWSER=chrome  # or firefox
+RUN_ON=local    # or browserstack
+DEVICE_NAME=Nexus 5  # Optional for mobile emulation
+BROWSERSTACK_USERNAME=your_browserstack_username
+BROWSERSTACK_ACCESS_KEY=your_browserstack_access_key
 
-Built-in environment hooks will:
+#If DEVICE_NAME isn't set, it defaults to "Nexus 5"
+```
+---
 
-    Launch your selected browser
-    Maximize window
-    Clear session/cookies
-    Handle screenshots on failure
+## Cross-Browser & Cloud Testing
+This project supports:
+- Chrome and Firefox (via WebDriverManager)
+- BrowserStack for cloud testing 
 
+The framework will automatically:
+- Launch your selected browser 
+- Maximize the window (desktop mode)
+- Handle mobile emulation (if configured)
+- Clear cookies and local storage before each scenario 
+- Take screenshots on any step failure
+---
 
-## 📸 Test Reports & Screenshots
-On failure, screenshots are automatically saved to:
+## Architecture: POM + Behave
+- Page Object Model (POM) is used to keep your page interactions clean and DRY. 
+- Business logic is abstracted into page classes like MainPage, SecondaryPage, etc. 
+- Tests are written in Gherkin for human-readable scenarios.
+---
 
-    features/test_results/screenshots/
+## Screenshots & Test Results
+Failed steps will auto-save screenshots to:
+```
+features/test_results/screenshots/
+```
+Filenames include:
+- Scenario name 
+- Step name 
+- Browser used 
+- Timestamp
+---
 
-Filenames include the scenario, step, browser, and timestamp.
+## Requirements
+- Python 3.10+ 
+- Chrome and/or Firefox installed 
+- Java installed (for Selenium Grid / Standalone server if used)
+```
+pip install -r requirements.txt
+```
+---
 
+## Future Development
+- Refactor environment.py into modular helper files for easier maintenance 
+- Add support for parallel test execution 
+- Improve test coverage across all listing filters 
+- Add CI/CD integration (e.g. GitHub Actions or Jenkins)
+- Expand mobile emulation testing with additional devices 
+- Add HTML or Allure test reporting
 
-## 🧱 Architecture
-This framework follows the Page Object Model (POM) for maintainability and reuse.
-Each page interaction lives in a class (e.g., MainPage, SecondaryPage) to separate logic from tests.
+## Contributing / Support
+This repo was built as part of the Careerist Automation Program.
+Feel free to fork it, play with it, or message with questions if you're diving into QA automation!
 
-Behave is used for its Gherkin syntax, which supports BDD-style readable test cases.
-
-## 🔧 Requirements
-Python 3.10+
-
-Chrome & Firefox browsers installed
-
-Install dependencies:
-        
-        pip install -r requirements.txt
-
-
-## 🙋‍♀️ Support
-This repo was built during the Careerist Automation program.
-If you're using it for your own learning or projects, feel free to fork or reach out with questions.
+--- 

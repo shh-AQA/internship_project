@@ -1,4 +1,3 @@
-from selenium.webdriver.common.by import By
 from behave import given, when, then
 
 @given('the user opens the Reelly main page')
